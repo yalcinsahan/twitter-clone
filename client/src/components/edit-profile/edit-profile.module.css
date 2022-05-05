@@ -1,0 +1,158 @@
+.edit-profile {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background-color: white;
+    top: 0;
+}
+
+.edit-box {
+    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+}
+
+.header button {
+    display: block;
+    margin-left: auto;
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+    padding: 6px 15px;
+    cursor: pointer;
+}
+
+.header h3 {
+    color: #0f1419;
+    font-size: 20px;
+    margin-left: 36px;
+}
+
+.wallpaper {
+    position: relative;
+}
+
+.wallpaper img {
+    aspect-ratio: 3/1;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.camera-icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.camera-icon div {
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.camera-icon div * {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.camera-icon input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.profile {
+    position: relative;
+    padding-left: 16px;
+    height: 11vw;
+}
+
+.profile-div {
+    height: 22vw;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    position: absolute;
+    top: -11vw;
+    border-radius: 50%;
+    border: 3px solid white;
+    max-width: 132px;
+    max-block-size: 132px;
+    background-color: red;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.inputs {
+    padding: 14px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gainsboro;
+    border-radius: 2px;
+    padding: 10px 6px;
+    margin-bottom: 22px;
+}
+
+.input span {
+    font-size: 13px;
+    color: #536471;
+}
+
+.input input {
+    margin-top: 10px;
+    border: none;
+    color: #0f1419;
+    font-size: 17px;
+}
+
+.input input:focus {
+    outline: none;
+}
+
+@media (min-width:600px) {
+    .profile-div {
+        top: -66px;
+    }
+
+    .profile {
+        height: 66px;
+    }
+}
+
+@media (min-width:705px) {
+    .edit-box {
+        max-height: 650px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .edit-profile {
+        background-color: rgba(135, 131, 131, 0.5);
+    }
+
+}

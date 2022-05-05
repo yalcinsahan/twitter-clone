@@ -1,0 +1,47 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    padding: 12px 32px;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login input {
+    width: 100%;
+    margin-block: 8px;
+    padding: 14px 7px;
+    border: 1px solid gainsboro;
+    border-radius: 3px;
+}
+
+.login input:focus {
+    outline: none;
+}
+
+.login img {
+    width: 30px;
+}
+
+.login h1 {
+    color: #0f1419;
+    font-size: 26px;
+    margin-block: 20px;
+    margin-right: auto;
+}
+
+.login button {
+    height: 50px;
+    width: 100px;
+    border: none;
+    font-size: 17px;
+    border-radius: 50px;
+    background-color: #0f1419;
+    margin-top: 20px;
+    color: white;
+    width: 100%;
+    cursor: pointer;
+}

@@ -1,0 +1,150 @@
+.leftbar {
+    display: none;
+}
+
+@media(min-width:500px) {
+    .leftbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 18px;
+        justify-content: space-between;
+        top: 0;
+        position: sticky;
+        height: 100vh;
+    }
+
+    .logo {
+        width: 28px;
+        display: block;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .link {
+        cursor: pointer;
+        color: black;
+        font-size: 30px !important;
+        margin-top: 35px;
+    }
+
+    .link p {
+        display: none;
+    }
+
+    .tweeting {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #1d9bf0;
+        color: white;
+        margin: 0 auto;
+        margin-top: 37px;
+    }
+
+    .tweeting * {
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .tweeting p {
+        display: none;
+    }
+
+    .profile {
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        object-fit: cover;
+    }
+
+    .bottom {
+        position: absolute;
+        bottom: 18px;
+        display: flex;
+        align-items: center;
+    }
+
+    .bottom div {
+        display: none;
+    }
+}
+
+@media(min-width:1265px) {
+    .leftbar {
+        flex: 252;
+        display: block;
+    }
+
+    .logo {
+        margin-left: 0;
+        margin-left: 15px;
+    }
+
+    .links {
+        align-items: flex-start;
+    }
+
+    .links * {
+        text-decoration: none;
+    }
+
+    .link {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px 15px;
+        margin-top: 15px;
+        border-radius: 50px;
+    }
+
+    .link:hover {
+        background-color: gainsboro;
+    }
+
+    .link p {
+        display: block;
+        font-size: 20px;
+        color: #0f1419;
+        margin-left: 23px;
+    }
+
+    .tweeting {
+        width: 225px;
+        border-radius: 50px;
+        margin-left: 0;
+        cursor: pointer;
+    }
+
+    .tweeting p {
+        display: block;
+        font-size: 17px;
+    }
+
+    .tweeting-logo {
+        display: none !important;
+    }
+
+    .bottom div {
+        display: block;
+        margin-left: 12px;
+    }
+
+    .bottom p {
+        font-size: 15px;
+        color: #536471;
+    }
+
+    .bottom b {
+        color: #0f1419;
+    }
+}

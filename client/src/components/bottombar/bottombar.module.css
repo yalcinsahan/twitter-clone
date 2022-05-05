@@ -1,0 +1,22 @@
+.bottombar {
+    display: flex;
+    align-items: center;
+    height: 52.5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+}
+
+.bottombar * {
+    flex: 1;
+    margin: 0 auto;
+    cursor: pointer;
+    font-size: 26px;
+}
+
+@media(min-width:500px) {
+    .bottombar {
+        display: none;
+    }
+}

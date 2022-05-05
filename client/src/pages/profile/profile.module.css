@@ -1,0 +1,156 @@
+.wrapper {
+    flex: 600;
+    border: 1px solid gainsboro;
+    max-width: 600px;
+}
+
+.navbar {
+    padding: 7px 16px;
+    display: flex;
+    align-items: center;
+    color: rgb(15, 20, 25);
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 999;
+    opacity: 0.95;
+}
+
+.navbar div {
+    margin-left: 38px;
+}
+
+.navbar h3 {
+    font-size: 17px;
+    color: #0f1419;
+}
+
+.navbar p {
+    font-size: 13px;
+    color: #536471;
+}
+
+.wallpaper {
+    aspect-ratio: 3/1;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.header div {
+    width: 100%;
+    padding-inline: 16px;
+    position: relative;
+    display: flex;
+    height: 11vw;
+}
+
+.profile-pic {
+    height: 22vw;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    position: absolute;
+    top: -11vw;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.profile-button-following {
+    margin-left: auto;
+    margin-top: 12px;
+    color: #0f1419;
+    font-size: 15px;
+    background-color: transparent;
+    border: 1px solid gainsboro;
+    padding: 10px 16px;
+    border-radius: 50px;
+    max-height: 34px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-button-follow {
+    margin-left: auto;
+    margin-top: 12px;
+    color: white;
+    font-size: 15px;
+    background-color: black;
+    padding: 10px 16px;
+    border-radius: 50px;
+    max-height: 34px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.info {
+    margin-top: 21px;
+    padding-left: 16px;
+}
+
+.info h3 {
+    color: #0f1419;
+    font-size: 20px;
+}
+
+.info p {
+    color: #536471;
+    font-size: 15px;
+}
+
+.date,
+.follow {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.date p {
+    color: #536471;
+    font-size: 15px;
+    margin-left: 4px;
+}
+
+.follow p {
+    color: #536471;
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+.buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    padding: 16px;
+    color: #536471;
+    font-size: 15px;
+    display: block;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: gainsboro;
+}
+
+.divider {
+    height: 1px;
+    width: 100%;
+    background-color: gainsboro;
+}
+
+@media(min-width:688px) {
+    .header div {
+        height: 75.5px !important;
+    }
+
+    .profile-pic {
+        max-height: 151px !important;
+        top: -75.5px !important;
+    }
+}
