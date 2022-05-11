@@ -8,7 +8,7 @@ export default function Tweet({ tweet }) {
         <>
             <div className={styles.divider} />
             <div className={styles.tweet}>
-                <img src="/images/cat.jpg" alt="" className={styles.profile} />
+                <img src={tweet.ownerProfilePicture} alt="" className={styles.profile} />
                 <div className={styles.body}>
                     <p className={styles.info}><b>{tweet.ownerName}</b> @{tweet.ownerUsername} - Apr 9</p>
                     <p className={styles.text}>{tweet.text}</p>

@@ -1,5 +1,6 @@
 import User from '../models/user.js'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 
 export const login = async (req, res) => {
 
@@ -9,7 +10,9 @@ export const login = async (req, res) => {
 
     //user bulunduysa password kontrolü yapılacak.
     // let passwordIsValid = await bcrypt.compare(req.body.password, user.password);
-    if (req.body.password !== user.password) return res.status(401).send({ message: "şifre hatalı." })
+    //if (req.body.password !== user.password) return res.status(401).send({ message: "şifre hatalı." })
+    if (!bcrypt.compareSync(req.body.password, user.password)) return res.status(401).send({ message: "şifre hatalı." })
+
 
     //password doğruysa bir token oluşturulacak.
     //token'in geçerliliği 86400 ms olarak ayarlandı.
@@ -33,6 +36,8 @@ export const login = async (req, res) => {
 }
 
 export const signup = (req, res) => {
+
+    req.body.password = bcrypt.hashSync(req.body.password, 8);
 
     //create metodu ile user oluşturuluyor.
     User.create({ ...req.body })

@@ -15,6 +15,5 @@ export const followUser = async (user, username) => {
 }
 
 export const updateUser = async (user) => {
-    console.log(user);
     return await axios.patch(API_URL + "/update/" + user.username, user, { headers: { 'x-access-token': user.accessToken } })
 }

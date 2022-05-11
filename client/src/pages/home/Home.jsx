@@ -10,6 +10,11 @@ export default function Home() {
 
     const { user } = useSelector(state => state.auth)
 
+    useEffect(() => {
+        if (!user) navigate('/login')
+    }, [user])
+
+
     let navigate = useNavigate();
 
     const [tweet, setTweet] = useState({ text: '', image: '' })
@@ -51,7 +56,7 @@ export default function Home() {
         <div className={styles.home}>
 
             <div className={styles.header}>
-                <img src={user.profilePicture} alt="" />
+                <img src={user && user.profilePicture} alt="" />
                 <h3>Home</h3>
             </div>
 
