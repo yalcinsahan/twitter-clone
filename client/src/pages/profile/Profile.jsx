@@ -8,6 +8,7 @@ import { followUser, getUser } from '../../services/user-service'
 import { getTweets } from '../../services/tweet-service'
 import { refreshUser } from '../../redux/auth-slice'
 import EditProfile from '../../components/edit-profile/EditProfile'
+import moment from 'moment'
 
 export default function Profile() {
 
@@ -111,7 +112,7 @@ export default function Profile() {
 
                             <div className={styles.date}>
                                 <CalendarMonth />
-                                <p>Joined September 2022</p>
+                                <p>Joined {moment(account.createdAt).format('MMMM YYYY')}</p>
                             </div>
 
                             <div className={styles.follow}>
