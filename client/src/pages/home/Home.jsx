@@ -10,21 +10,16 @@ export default function Home() {
 
     const { user } = useSelector(state => state.auth)
 
-    useEffect(() => {
-        if (!user) navigate('/login')
-    }, [user])
-
-
     let navigate = useNavigate();
 
     const [tweet, setTweet] = useState({ text: '', image: '' })
     const [tweets, setTweets] = useState([])
 
     const sendTweet = () => {
-        createTweet({ ...tweet, ownerUsername: user.username, ownerName: user.name, ownerProfilePicture: user.profilePicture }, user.accessToken)
+        createTweet({ ...tweet, user: user._id }, user.accessToken)
             .then(() => {
                 setTweet({ text: '', image: '' })
-                getFollowingsTweets([...user.followings, user.username], user.accessToken)
+                getFollowingsTweets([...user.followings, user._id], user.accessToken)
                     .then((response) => setTweets(response))
             })
     }
@@ -34,7 +29,7 @@ export default function Home() {
             return navigate("/login");
         }
         else {
-            getFollowingsTweets([...user.followings, user.username], user.accessToken)
+            getFollowingsTweets([...user.followings, user._id], user.accessToken)
                 .then((response) => setTweets(response))
         }
     }, [user, navigate])
@@ -44,7 +39,6 @@ export default function Home() {
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            console.log(reader.result)
             setTweet({ ...tweet, image: reader.result })
         };
         reader.onerror = function (error) {

@@ -10,8 +10,6 @@ export default function EditProfile(props) {
     const dispatch = useDispatch()
     const [account, setAccount] = useState(props.account)
 
-    console.log(props.account);
-
     useEffect(() => {
         document.body.style.overflow = "hidden"
     }, [])

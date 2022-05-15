@@ -1,6 +1,5 @@
 import Tweet from '../models/tweet.js'
 import User from '../models/user.js'
-import jwt from 'jsonwebtoken'
 
 export const getAllTweets = (req, res) => {
     Tweet.find({})
@@ -22,7 +21,8 @@ export const getTweetById = (req, res) => {
 
 export const getFollowingsTweets = (req, res) => {
 
-    Tweet.find({ ownerUsername: { "$in": req.body.followings } }).sort({ 'createdAt': -1 }).limit(10)
+    Tweet.find({ user: { "$in": req.body.followings } }).sort({ 'createdAt': -1 }).limit(10)
+        .populate('user', ["name", "username", "profilePicture"])
         .then(response => res.send(response))
         .catch(err => res.send(err))
 }
@@ -30,9 +30,13 @@ export const getFollowingsTweets = (req, res) => {
 
 export const getTweetsByUsername = async (req, res) => {
 
-    Tweet.find({ ownerUsername: req.params.username }).sort({ createdAt: -1 })
+    const user = await User.findOne({ username: req.params.username })
+
+    Tweet.find({ user: user._id }).sort({ createdAt: -1 })
+        .populate('user', ["name", "username", "profilePicture"])
         .then(response => res.send(response))
         .catch(err => res.send(err))
+
 }
 
 export const deleteTweet = (req, res) => {

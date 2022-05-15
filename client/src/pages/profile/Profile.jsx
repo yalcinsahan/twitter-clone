@@ -19,6 +19,7 @@ export default function Profile() {
     const [tweets, setTweets] = useState([])
     const [followingStatus, setFollowingStatus] = useState("Follow")
     const [account, setAccount] = useState({
+        _id: "",
         name: '',
         username: '',
         likes: [],
@@ -31,7 +32,9 @@ export default function Profile() {
 
     useEffect(() => {
         getUser(username)
-            .then((res) => setAccount(res))
+            .then((res) => {
+                setAccount(res)
+            })
             .catch(err => console.log(err))
 
         getTweets(username)
@@ -41,10 +44,10 @@ export default function Profile() {
         if (user) {
             checkFollowing(user.followings)
         }
-    }, [user, username])
+    }, [user, username, account._id])
 
     const handleFollow = async () => {
-        const updatedFollowingList = await followUser(user, username)
+        const updatedFollowingList = await followUser(user, account._id)
 
         const userFromLocal = JSON.parse(localStorage.getItem('user'));
 
@@ -55,16 +58,16 @@ export default function Profile() {
     }
 
     const checkFollowing = (followings) => {
-        if (followings.length == 0) {
+        if (followings.length === 0) {
             setFollowingStatus("Follow")
         }
         else {
             for (let i = 0; i < followings.length; i++) {
-                if (followings[i] == username) {
+                if (followings[i] === account._id) {
                     setFollowingStatus("Following")
                     break;
                 }
-                else if (i == followings.length - 1) {
+                else if (i === followings.length - 1) {
                     setFollowingStatus("Follow")
                 }
             }

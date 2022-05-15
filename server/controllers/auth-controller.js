@@ -1,6 +1,7 @@
 import User from '../models/user.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+import mongoose from 'mongoose'
 
 export const login = async (req, res) => {
 
@@ -21,6 +22,7 @@ export const login = async (req, res) => {
     //giriş işlemi başarılı olduğu için name, email ve token; client'a gönderilecek.
     user.accessToken = token;
     return res.status(200).send({
+        _id: user._id,
         username: user.username,
         name: user.name,
         accessToken: user.accessToken,
@@ -40,7 +42,7 @@ export const signup = (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, 8);
 
     //create metodu ile user oluşturuluyor.
-    User.create({ ...req.body })
+    User.create({ ...req.body, _id: new mongoose.Types.ObjectId() })
         .then(result => res.status(201).send(result))
         .catch(err => res.status(400).send(err))
 }

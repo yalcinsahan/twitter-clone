@@ -31,7 +31,6 @@ export const deleteUser = (req, res) => {
 }
 
 export const updateUser = (req, res) => {
-    console.log("girdi");
     User.findOneAndUpdate({ username: req.params.username }, req.body)
         .then(() => res.send("user updated successfully"))
         .catch(err => res.send(err))
@@ -60,21 +59,19 @@ export const followUser = async (req, res) => {
     User.findByIdAndUpdate(user._id, { followings: user.followings })
         .then((async () => {
 
-            const user2 = await User.findOne({ username: req.body.following })
+            const user2 = await User.findOne({ _id: req.body.following })
 
             if (user2.followers.length == 0) {
-                user2.followers.push(req.params.username)
+                user2.followers.push(user._id.toString())
             }
             else {
                 for (let i = 0; i < user2.followers.length; i++) {
-                    if (user2.followers[i] === req.params.username) {
-                        console.log("girdi 1");
-                        user2.followers = user2.followers.filter((item) => item !== req.params.username)
+                    if (user2.followers[i].toString() == user._id.toString()) {
+                        user2.followers = user2.followers.filter((item) => item.toString() !== user._id.toString())
                         break;
                     }
                     else if (i == (user2.followers.length - 1)) {
-                        console.log("girdi 2");
-                        user2.followers.push(req.params.username)
+                        user2.followers.push(user._id.toString())
                         break;
                     }
                 }

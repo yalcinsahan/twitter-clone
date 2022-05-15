@@ -1,4 +1,6 @@
 import { EditOutlined, EmailOutlined, HomeOutlined, NotificationsOutlined, PersonOutlined, Search, Star } from '@mui/icons-material'
+import { height, width } from '@mui/system'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './leftbar.module.css'
@@ -6,8 +8,9 @@ import styles from './leftbar.module.css'
 export default function Leftbar() {
 
     const { user } = useSelector(state => state.auth)
-
     const navigate = useNavigate()
+
+    const [dialog, setDialog] = useState(true)
 
     return (
         <div className={styles.leftbar}>
@@ -49,6 +52,7 @@ export default function Leftbar() {
                     <p>@{user.username}</p>
                 </div>
             </div>
+
         </div>
     )
 }

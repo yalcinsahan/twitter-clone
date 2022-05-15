@@ -1,9 +1,6 @@
 import axios from 'axios'
-import { useSelector } from 'react-redux';
 
 const API_URL = "http://localhost:8000/tweets"
-
-const user = JSON.parse(localStorage.getItem('user'));
 
 export const createTweet = async (tweet, accessToken) => {
     const response = await axios.post(API_URL + "/create", tweet, { headers: { 'x-access-token': accessToken } })
