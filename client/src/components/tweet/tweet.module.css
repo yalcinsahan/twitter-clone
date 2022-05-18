@@ -35,15 +35,31 @@
 
 .actions {
     margin-top: 5px;
+    display: flex;
 }
 
-.actions * {
-    color: #536471;
+.action {
+    display: flex;
+    align-items: center;
     margin-right: 50px;
-    cursor: pointer;
-    font-size: 18px !important;
-    margin-top: 8px;
 }
+
+.action * {
+    color: #536471;
+    cursor: pointer;
+    margin-top: 8px;
+    font-size: 18px !important;
+}
+
+.action span {
+    margin-left: 6px;
+    font-size: 13px !important;
+}
+
+.like * {
+    color: red !important;
+}
+
 
 .divider {
     height: 1px;

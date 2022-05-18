@@ -59,25 +59,25 @@ export const followUser = async (req, res) => {
     User.findByIdAndUpdate(user._id, { followings: user.followings })
         .then((async () => {
 
-            const user2 = await User.findOne({ _id: req.body.following })
+            const followedUser = await User.findOne({ _id: req.body.following })
 
-            if (user2.followers.length == 0) {
-                user2.followers.push(user._id.toString())
+            if (followedUser.followers.length == 0) {
+                followedUser.followers.push(user._id.toString())
             }
             else {
-                for (let i = 0; i < user2.followers.length; i++) {
-                    if (user2.followers[i].toString() == user._id.toString()) {
-                        user2.followers = user2.followers.filter((item) => item.toString() !== user._id.toString())
+                for (let i = 0; i < followedUser.followers.length; i++) {
+                    if (followedUser.followers[i].toString() == user._id.toString()) {
+                        followedUser.followers = followedUser.followers.filter((item) => item.toString() !== user._id.toString())
                         break;
                     }
-                    else if (i == (user2.followers.length - 1)) {
-                        user2.followers.push(user._id.toString())
+                    else if (i == (followedUser.followers.length - 1)) {
+                        followedUser.followers.push(user._id.toString())
                         break;
                     }
                 }
             }
 
-            User.findByIdAndUpdate(user2._id, { followers: user2.followers })
+            User.findByIdAndUpdate(followedUser._id, { followers: followedUser.followers })
                 .then(() => {
                     res.send(user.followings)
                 })

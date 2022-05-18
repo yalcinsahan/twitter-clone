@@ -11,19 +11,17 @@ export default function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { user, isError, isSuccess, message } = useSelector(
+    const { user, message } = useSelector(
         (state) => state.auth
     )
 
     useEffect(() => {
 
-        if (isError) console.log(message)
-
-        if (isSuccess || user) navigate('/')
+        if (user) navigate('/')
 
         dispatch(reset())
 
-    }, [user, isError, isSuccess, message, navigate, dispatch])
+    }, [user, message, navigate, dispatch])
 
 
     const handleLogIn = (e) => {

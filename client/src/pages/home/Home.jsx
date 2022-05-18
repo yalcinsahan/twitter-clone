@@ -76,7 +76,7 @@ export default function Home() {
             {tweets.map((tweet) => {
                 return (
                     <div key={tweet._id}>
-                        <Tweet tweet={tweet} />
+                        <Tweet props={tweet} />
                     </div>
                 )
             })}

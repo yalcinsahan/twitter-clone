@@ -45,7 +45,7 @@ export default function Profile() {
         if (user) {
             checkFollowing(user.followings)
         }
-    }, [user, username, account._id])
+    }, [user, username, account._id, user.followings])
 
     const handleFollow = async () => {
         const updatedFollowingList = await followUser(user, account._id)
@@ -133,7 +133,7 @@ export default function Profile() {
                         {tweets.map((tweet) => {
                             return (
                                 <div key={tweet._id}>
-                                    <Tweet tweet={tweet} user={account} />
+                                    <Tweet props={tweet} user={account} />
                                 </div>
                             )
                         })}

@@ -16,3 +16,8 @@ export const getFollowingsTweets = async (followings, accessToken) => {
     const response = await axios.post(API_URL + "/followings", { followings: followings }, { headers: { 'x-access-token': accessToken } })
     return response.data
 }
+
+export const updateTweet = async (datas, accessToken) => {
+    const response = await axios.patch(`${API_URL}/update/${datas.tweet._id}`, datas, { headers: { 'x-access-token': accessToken } })
+    return response.data
+}

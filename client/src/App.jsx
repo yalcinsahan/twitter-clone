@@ -8,6 +8,7 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Bottombar from './components/bottombar/Bottombar';
 import Signup from './pages/signup/Signup';
+import Messages from './pages/messages/Messages';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/homepage' element={<Home />} />
+            <Route path='/messages' element={<Messages />} />
             <Route path='/:username' element={<Profile />} />
           </Routes>
           {user && <Rightbar />}
