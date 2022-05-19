@@ -1,4 +1,3 @@
-import tweet from '../models/tweet.js'
 import Tweet from '../models/tweet.js'
 import User from '../models/user.js'
 

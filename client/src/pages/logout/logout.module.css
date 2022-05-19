@@ -1,0 +1,65 @@
+body {
+    overflow: hidden;
+}
+
+.logout {
+    background-color: #999999;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    margin-inline: 34px;
+    max-width: 320px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.box img {
+    width: 32px;
+    margin: 0 auto;
+}
+
+.box h1 {
+    font-size: 20px;
+    color: #0f1419;
+    margin-top: 25px;
+}
+
+.box p {
+    font-size: 15px;
+    color: #536471;
+    margin-top: 20px;
+}
+
+.logout-button {
+    width: 100%;
+    color: white;
+    font-size: 15px;
+    border-radius: 20px;
+    background-color: #0f1419;
+    border: 1px solid #0f1419;
+    margin-top: 26px;
+    padding-block: 12px;
+    cursor: pointer;
+}
+
+
+.cancel-button {
+    width: 100%;
+    color: #0f1419;
+    font-size: 15px;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid gray;
+    margin-top: 12px;
+    padding-block: 12px;
+    cursor: pointer;
+}

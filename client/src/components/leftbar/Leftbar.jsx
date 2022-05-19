@@ -1,4 +1,5 @@
 import { EditOutlined, EmailOutlined, HomeOutlined, NotificationsOutlined, PersonOutlined } from '@mui/icons-material'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './leftbar.module.css'
@@ -7,6 +8,8 @@ export default function Leftbar() {
 
     const { user } = useSelector(state => state.auth)
     const navigate = useNavigate()
+
+    const [dialogVisibility, setDialogVisibility] = useState(true)
 
     return (
         <div className={styles.leftbar}>
@@ -41,11 +44,20 @@ export default function Leftbar() {
                 </div>
             </div>
 
-            <div className={styles.bottom}>
-                <img src={user.profilePicture} alt="" className={styles.profile} />
-                <div>
-                    <p><b>{user.name}</b></p>
-                    <p>@{user.username}</p>
+            <div className={styles.bottom} >
+                <div className={styles.dialog} style={{ visibility: dialogVisibility && "hidden" }}>
+                    <p onClick={() => navigate("/logout")}>
+                        Log out @{user.username}
+                    </p>
+                </div>
+
+
+                <div className={styles.names} onClick={() => setDialogVisibility(!dialogVisibility)}>
+                    <img src={user.profilePicture} alt="" className={styles.profile} />
+                    <div>
+                        <p><b>{user.name}</b></p>
+                        <p>@{user.username}</p>
+                    </div>
                 </div>
             </div>
 

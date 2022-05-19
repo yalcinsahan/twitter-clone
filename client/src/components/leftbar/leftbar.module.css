@@ -72,11 +72,34 @@
         bottom: 18px;
         display: flex;
         align-items: center;
+        cursor: pointer;
     }
 
-    .bottom div {
+
+    .names div {
         display: none;
     }
+
+    .dialog {
+        position: absolute;
+        transform: translateY(-100%);
+        top: -10px;
+        width: 300px;
+        background-color: pink;
+        padding: 12px 0;
+        border-radius: 18px;
+        background-color: white;
+        box-shadow: 0px 0px 5px -2.4px #000000;
+        cursor: auto;
+    }
+
+    .dialog p {
+        padding: 16px;
+        font-size: 15px;
+        color: #0f1419;
+        cursor: pointer;
+    }
+
 }
 
 @media(min-width:1265px) {
@@ -134,17 +157,21 @@
         display: none !important;
     }
 
-    .bottom div {
+    .names {
+        display: flex;
+    }
+
+    .names div {
         display: block;
         margin-left: 12px;
     }
 
-    .bottom p {
+    .name p {
         font-size: 15px;
         color: #536471;
     }
 
-    .bottom b {
+    .names b {
         color: #0f1419;
     }
 }

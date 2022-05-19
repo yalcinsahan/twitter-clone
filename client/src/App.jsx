@@ -9,6 +9,7 @@ import Login from './pages/login/Login';
 import Bottombar from './components/bottombar/Bottombar';
 import Signup from './pages/signup/Signup';
 import Messages from './pages/messages/Messages';
+import Logout from './pages/logout/Logout';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/logout' element={user && <Logout />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/homepage' element={<Home />} />
             <Route path='/messages' element={<Messages />} />
