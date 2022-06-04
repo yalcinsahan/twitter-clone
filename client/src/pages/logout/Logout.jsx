@@ -13,7 +13,7 @@ export default function Logout() {
 
     useEffect(() => {
         if (!user) navigate("/login")
-    }, [user])
+    }, [user, navigate])
 
     const handleLogout = () => {
         dispatch(logout())

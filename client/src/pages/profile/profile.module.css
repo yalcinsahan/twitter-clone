@@ -30,6 +30,10 @@
     color: #536471;
 }
 
+.back-button {
+    cursor: pointer;
+}
+
 .wallpaper {
     aspect-ratio: 3/1;
     width: 100%;

@@ -1,4 +1,4 @@
-import { ArrowBack, CalendarMonth, EmailOutlined, Mail } from '@mui/icons-material'
+import { ArrowBack, CalendarMonth, EmailOutlined } from '@mui/icons-material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Tweet from '../../components/tweet/Tweet'
@@ -45,7 +45,7 @@ export default function Profile() {
             dispatch(changeBottom(false))
             dispatch(changeRight(false))
         }
-    }, [user])
+    }, [user, dispatch])
 
     useEffect(() => {
         getUser(username)
@@ -61,7 +61,8 @@ export default function Profile() {
         if (user) {
             checkFollowing(user?.followings)
         }
-    }, [user, username, account?._id, user?.followings])
+
+    }, [user, username, account?._id, user?.followings, dispatch])
 
     const handleFollow = async () => {
         const updatedFollowingList = await followUser(user, account._id)
@@ -105,7 +106,7 @@ export default function Profile() {
 
                         {/*navbar*/}
                         <div className={styles.navbar}>
-                            <ArrowBack />
+                            <ArrowBack onClick={() => navigate(-1)} className={styles["back-button"]} />
 
                             <div>
                                 <h3>{account.name}</h3>

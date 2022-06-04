@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createTweet, getFollowingsTweets } from '../../services/tweet-service'
-import { changeBottom, changeDisplays, changeLeft, changeRight } from '../../redux/display-slice'
+import { changeBottom, changeLeft, changeRight } from '../../redux/display-slice'
 import Tweet from '../../components/tweet/Tweet'
 import styles from './home.module.css'
 
@@ -11,10 +11,7 @@ export default function Home() {
 
     const { user } = useSelector(state => state.auth)
     const dispatch = useDispatch()
-    const { rightbar } = useSelector(state => state.displays)
-
-
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [tweet, setTweet] = useState({ text: '', image: '' })
     const [tweets, setTweets] = useState([])
@@ -41,7 +38,7 @@ export default function Home() {
             getFollowingsTweets([...user.followings, user._id], user.accessToken)
                 .then((response) => setTweets(response))
         }
-    }, [user, navigate])
+    }, [user, navigate, dispatch])
 
 
     const convertBase64 = (file) => {
@@ -59,7 +56,7 @@ export default function Home() {
         <div className={styles.home}>
 
             <div className={styles.header}>
-                <img src={user && user.profilePicture} alt="" />
+                <img src={user && user.profilePicture} alt="" onClick={() => navigate(`${user.username}`)} />
                 <h3>Home</h3>
             </div>
 

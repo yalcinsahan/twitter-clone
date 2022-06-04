@@ -20,6 +20,7 @@
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .header h3 {
