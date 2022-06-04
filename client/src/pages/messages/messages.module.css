@@ -23,6 +23,13 @@
     border-right: 1px solid gainsboro;
 }
 
+.chat-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 .navbar {
     position: sticky;
     top: 0;

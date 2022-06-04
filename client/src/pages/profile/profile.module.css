@@ -55,9 +55,23 @@
     border: 3px solid white;
 }
 
+.button-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.message-button {
+    margin-right: 14px;
+    border: 1px gainsboro solid;
+    padding: 6px;
+    height: 34px !important;
+    width: 34px !important;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .profile-button-following {
-    margin-left: auto;
-    margin-top: 12px;
     color: #0f1419;
     font-size: 15px;
     background-color: transparent;
@@ -65,9 +79,9 @@
     padding: 10px 16px;
     border-radius: 50px;
     max-height: 34px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    cursor: pointer;
 }
 
 .profile-button-follow {

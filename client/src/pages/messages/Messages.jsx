@@ -19,7 +19,7 @@ export default function Messages() {
     const [conversations, setConversations] = useState()
     const [currentChat, setCurrentChat] = useState()
     const [messages, setMessages] = useState()
-    const [message, setMessage] = useState()
+    const [message, setMessage] = useState("")
     const [arrivalMessage, setArrivalMessage] = useState()
     const [friend, setFriend] = useState()
     const socket = useRef()
@@ -143,13 +143,15 @@ export default function Messages() {
                                 </div>
                             </div>
 
-                            {messages?.map((message) => <Message message={message} own={user._id === message.sender} key={message._id} />)}
-                            <div ref={scrollRef}></div>
+                            <div className={styles["chat-body"]}>
+                                {messages?.map((message) => <Message message={message} own={user._id === message.sender} key={message._id} />)}
+                                <div ref={scrollRef}></div>
 
-                            <form className={styles["bottom"]} onSubmit={(e) => handleSend(e)}>
-                                <input type="text" placeholder='Start a new message' value={message} onChange={(e) => setMessage(e.target.value)} />
-                                <Send type="submit" className={styles["send"]} onClick={(e) => handleSend(e)} />
-                            </form>
+                                <form className={styles["bottom"]} onSubmit={(e) => handleSend(e)}>
+                                    <input type="text" placeholder='Start a new message' value={message} onChange={(e) => setMessage(e.target.value)} />
+                                    <Send type="submit" className={styles["send"]} onClick={(e) => handleSend(e)} />
+                                </form>
+                            </div>
                         </>
                     ) : <div className={styles["info"]}>
                         <h3>Select a message</h3>

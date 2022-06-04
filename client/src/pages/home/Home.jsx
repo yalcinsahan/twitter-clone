@@ -38,8 +38,6 @@ export default function Home() {
             dispatch(changeBottom(true))
             dispatch(changeRight(true))
 
-            console.log(rightbar);
-
             getFollowingsTweets([...user.followings, user._id], user.accessToken)
                 .then((response) => setTweets(response))
         }

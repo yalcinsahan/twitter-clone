@@ -1,5 +1,5 @@
-import { ArrowBack, CalendarMonth } from '@mui/icons-material'
-import { useParams } from 'react-router-dom'
+import { ArrowBack, CalendarMonth, EmailOutlined, Mail } from '@mui/icons-material'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Tweet from '../../components/tweet/Tweet'
 import styles from './profile.module.css'
@@ -10,10 +10,12 @@ import { refreshUser } from '../../redux/auth-slice'
 import EditProfile from '../../components/edit-profile/EditProfile'
 import moment from 'moment'
 import { changeBottom, changeLeft, changeRight } from '../../redux/display-slice'
+import axios from 'axios'
 
 export default function Profile() {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { username } = useParams()
     const { user } = useSelector(state => state.auth)
 
@@ -89,6 +91,11 @@ export default function Profile() {
         }
     }
 
+    const handleMessage = () => {
+        axios.post("http://localhost:8000/conversations", { senderId: user?._id, receiverId: account?._id })
+            .then(res => navigate("/messages"))
+    }
+
     return (
         <>
             {edit && <EditProfile edit={edit} setEdit={setEdit} account={user} setAccount={setAccount} />}
@@ -113,9 +120,12 @@ export default function Profile() {
                             <div>
                                 <img src={account.profilePicture} alt="" className={styles['profile-pic']} />
 
-                                {(user && account.username === user.username)
-                                    ? <button onClick={(e) => setEdit(!edit)} className={styles['profile-button-following']}>Edit profile</button>
-                                    : user && <button onClick={handleFollow} className={styles['profile-button-' + followingStatus.toLowerCase()]}>{followingStatus}</button>}
+                                <div className={styles["button-div"]}>
+                                    {user?._id !== account?._id && <EmailOutlined className={styles["message-button"]} onClick={handleMessage} />}
+                                    {(user && account.username === user.username)
+                                        ? <button onClick={(e) => setEdit(!edit)} className={styles['profile-button-following']}>Edit profile</button>
+                                        : user && <button onClick={handleFollow} className={styles['profile-button-' + followingStatus.toLowerCase()]}>{followingStatus}</button>}
+                                </div>
                             </div>
                         </div>
 
