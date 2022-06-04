@@ -1,14 +1,18 @@
 import { EditOutlined, PhotoOutlined } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createTweet, getFollowingsTweets } from '../../services/tweet-service'
+import { changeBottom, changeDisplays, changeLeft, changeRight } from '../../redux/display-slice'
 import Tweet from '../../components/tweet/Tweet'
 import styles from './home.module.css'
 
 export default function Home() {
 
     const { user } = useSelector(state => state.auth)
+    const dispatch = useDispatch()
+    const { rightbar } = useSelector(state => state.displays)
+
 
     let navigate = useNavigate();
 
@@ -29,6 +33,13 @@ export default function Home() {
             return navigate("/login");
         }
         else {
+
+            dispatch(changeLeft(true))
+            dispatch(changeBottom(true))
+            dispatch(changeRight(true))
+
+            console.log(rightbar);
+
             getFollowingsTweets([...user.followings, user._id], user.accessToken)
                 .then((response) => setTweets(response))
         }

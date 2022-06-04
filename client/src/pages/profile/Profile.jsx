@@ -9,6 +9,7 @@ import { getTweets } from '../../services/tweet-service'
 import { refreshUser } from '../../redux/auth-slice'
 import EditProfile from '../../components/edit-profile/EditProfile'
 import moment from 'moment'
+import { changeBottom, changeLeft, changeRight } from '../../redux/display-slice'
 
 export default function Profile() {
 
@@ -32,6 +33,19 @@ export default function Profile() {
     })
 
     useEffect(() => {
+        if (user) {
+            dispatch(changeLeft(true))
+            dispatch(changeBottom(true))
+            dispatch(changeRight(true))
+        }
+        else {
+            dispatch(changeLeft(false))
+            dispatch(changeBottom(false))
+            dispatch(changeRight(false))
+        }
+    }, [user])
+
+    useEffect(() => {
         getUser(username)
             .then((res) => {
                 setAccount(res)
@@ -43,9 +57,9 @@ export default function Profile() {
             .catch(err => console.log(err))
 
         if (user) {
-            checkFollowing(user.followings)
+            checkFollowing(user?.followings)
         }
-    }, [user, username, account._id, user.followings])
+    }, [user, username, account?._id, user?.followings])
 
     const handleFollow = async () => {
         const updatedFollowingList = await followUser(user, account._id)

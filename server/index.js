@@ -5,6 +5,8 @@ import config from './config/index.js'
 import userRouter from './routes/user-routes.js'
 import authRouter from './routes/auth-routes.js'
 import tweetRouter from './routes/tweet-routes.js'
+import conversationRouter from './routes/conversation-routes.js'
+import messageRouter from './routes/message-routes.js'
 
 
 dotenv.config()
@@ -21,6 +23,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/users', userRouter)
 app.use('/auth', authRouter)
 app.use('/tweets', tweetRouter)
+app.use('/conversations', conversationRouter)
+app.use('/messages', messageRouter)
 
 
 app.listen(process.env.PORT, () => console.log(`server is running port ${process.env.PORT}`));

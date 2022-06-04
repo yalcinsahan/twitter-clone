@@ -1,0 +1,22 @@
+.message {
+    background-color: rgb(226, 238, 244);
+    padding: 10px;
+    width: fit-content;
+    border-radius: 20px;
+    color: black;
+    margin-block: 5px;
+    max-width: 400px;
+    word-wrap: break-word;
+}
+
+.own {
+    background-color: rgb(23, 201, 255);
+    color: white;
+    margin-left: auto;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 20px;
+    margin-block: 5px;
+    max-width: 400px;
+    word-wrap: break-word;
+}

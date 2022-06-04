@@ -20,7 +20,7 @@ export default function Tweet({ props }) {
     }
 
     const likeCheck = () => {
-        const found = tweet.likes.find(element => element === user._id)
+        const found = tweet.likes.find(element => element === user?._id)
 
         return found ? true : false;
     }

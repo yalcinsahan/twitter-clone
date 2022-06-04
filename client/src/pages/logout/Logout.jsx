@@ -1,12 +1,19 @@
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './logout.module.css'
 import { logout } from '../../redux/auth-slice'
+import { useEffect } from 'react'
 
 export default function Logout() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    const { user } = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (!user) navigate("/login")
+    }, [user])
 
     const handleLogout = () => {
         dispatch(logout())

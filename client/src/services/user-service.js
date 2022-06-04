@@ -8,6 +8,11 @@ export const getUser = async (username) => {
     return response.data;
 }
 
+export const getUserById = async (id) => {
+    const response = await axios.get(API_URL + "/" + id)
+    return response.data;
+}
+
 export const followUser = async (user, userId) => {
     const response = await axios.patch(API_URL + "/follow/" + user.username, { following: userId }, { headers: { 'x-access-token': user.accessToken } })
 

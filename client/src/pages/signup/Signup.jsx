@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { reset } from '../../redux/auth-slice'
+import { changeBottom, changeLeft, changeRight } from '../../redux/display-slice'
 import authService from '../../services/auth-service'
 import styles from './signup.module.css'
 
@@ -17,7 +18,14 @@ export default function Signup() {
 
     useEffect(() => {
 
-        if (user) navigate('/')
+        if (user) {
+            navigate('/')
+        }
+        else {
+            dispatch(changeLeft(false))
+            dispatch(changeRight(false))
+            dispatch(changeBottom(false))
+        }
 
         dispatch(reset())
 

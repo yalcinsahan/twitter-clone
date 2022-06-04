@@ -50,7 +50,7 @@
     aspect-ratio: 1/1;
     object-fit: cover;
     position: absolute;
-    top: -11vw;
+    transform: translateY(-50%);
     border-radius: 50%;
     border: 3px solid white;
 }
@@ -151,6 +151,5 @@
 
     .profile-pic {
         max-height: 151px !important;
-        top: -75.5px !important;
     }
 }

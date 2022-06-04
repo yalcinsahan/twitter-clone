@@ -1,0 +1,28 @@
+.conversation {
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 16px;
+    width: 100%;
+}
+
+
+.conversation img {
+    width: 44px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.conversation b {
+    padding-left: 10px;
+    padding-right: 3px;
+}
+
+
+
+.divider {
+    height: 1px;
+    width: 100%;
+    background-color: gainsboro;
+}

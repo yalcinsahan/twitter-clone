@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { login, reset } from '../../redux/auth-slice'
+import { changeBottom, changeLeft, changeRight } from '../../redux/display-slice'
 import styles from './login.module.css'
 
 export default function Login() {
@@ -17,7 +18,14 @@ export default function Login() {
 
     useEffect(() => {
 
-        if (user) navigate('/')
+        if (user) {
+            navigate('/')
+        }
+        else {
+            dispatch(changeLeft(false))
+            dispatch(changeRight(false))
+            dispatch(changeBottom(false))
+        }
 
         dispatch(reset())
 
