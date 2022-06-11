@@ -58,7 +58,7 @@ export default function Login() {
                 value={userData.password}
                 onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
 
-            <button type='submit'>Log In</button>
+            <button type='submit' disabled={!userData.username || !userData.password}>Log In</button>
         </form>
     )
 }
