@@ -1,3 +1,3 @@
-# Social Media App
+# Twitter Clone
 
-Social media application developed using React.js on the frontend and Node.js on the backend.
+Twitter clone developed using React.js, Node.js and MongoDB.
