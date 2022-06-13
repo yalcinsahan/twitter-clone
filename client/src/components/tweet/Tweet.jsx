@@ -3,7 +3,7 @@ import { ChatBubbleOutline, Favorite, FavoriteBorder, TransformOutlined } from '
 import { useSelector } from 'react-redux'
 import styles from './tweet.module.css'
 import { updateTweet } from '../../services/tweet-service'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function Tweet({ props }) {
 

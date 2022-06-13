@@ -17,7 +17,7 @@ export default function Conversations(props) {
             .then(res => setFriend(res.data))
             .catch(err => console.log(err))
 
-    }, [props])
+    }, [props, user])
 
     return (
         <>

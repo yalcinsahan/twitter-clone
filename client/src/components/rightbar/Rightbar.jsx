@@ -1,6 +1,5 @@
 import { Search } from '@mui/icons-material'
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styles from './rightbar.module.css'
 
 export default function Rightbar() {

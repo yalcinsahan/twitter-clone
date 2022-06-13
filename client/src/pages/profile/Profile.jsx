@@ -59,7 +59,20 @@ export default function Profile() {
             .catch(err => console.log(err))
 
         if (user) {
-            checkFollowing(user?.followings)
+            if (user?.followings.length === 0) {
+                setFollowingStatus("Follow")
+            }
+            else {
+                for (let i = 0; i < user?.followings.length; i++) {
+                    if (user?.followings[i] === account._id) {
+                        setFollowingStatus("Following")
+                        break;
+                    }
+                    else if (i === user?.followings.length - 1) {
+                        setFollowingStatus("Follow")
+                    }
+                }
+            }
         }
 
     }, [user, username, account?._id, user?.followings, dispatch])

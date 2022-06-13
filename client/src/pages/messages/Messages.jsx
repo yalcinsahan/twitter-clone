@@ -6,13 +6,11 @@ import { io } from 'socket.io-client'
 import Conversations from '../../components/conversations/Conversations'
 import Message from '../../components/message/Message'
 import { ArrowBack, Send } from '@mui/icons-material'
-import { changeBottom, changeDisplays, changeLeft, changeRight } from '../../redux/display-slice'
-import { getUserById } from '../../services/user-service'
+import { changeBottom, changeLeft, changeRight } from '../../redux/display-slice'
 
 export default function Messages() {
 
     const { user } = useSelector(state => state.auth)
-    const { rightbar } = useSelector(state => state.displays)
     const dispatch = useDispatch()
 
 
@@ -21,7 +19,6 @@ export default function Messages() {
     const [messages, setMessages] = useState()
     const [message, setMessage] = useState("")
     const [arrivalMessage, setArrivalMessage] = useState()
-    const [friend, setFriend] = useState()
     const socket = useRef()
     const scrollRef = useRef();
     const messagesEndRef = useRef(null)
@@ -34,7 +31,7 @@ export default function Messages() {
         dispatch(changeLeft(true))
         dispatch(changeBottom(true))
         dispatch(changeRight(false))
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         socket.current = io("ws://localhost:8000");
@@ -61,10 +58,24 @@ export default function Messages() {
     }, [user]);
 
     useEffect(() => {
+
+        const getConversations = () => {
+            axios.get("http://localhost:8000/conversations/" + user._id)
+                .then(res => setConversations(res.data))
+                .catch(err => console.log(err))
+        }
+
         getConversations()
     }, [user._id])
 
     useEffect(() => {
+
+        const getMessages = () => {
+            axios.get("http://localhost:8000/messages/" + currentChat?._id)
+                .then(res => setMessages(res.data))
+                .catch(err => console.log(err))
+        }
+
         getMessages()
 
         if (currentChat?._id) {
@@ -74,25 +85,7 @@ export default function Messages() {
             dispatch(changeBottom(true))
         }
 
-        const friendId = currentChat?.members.find((member) => member !== user._id)
-        getUserById(friendId)
-            .then((res) => {
-                setFriend({ name: res.name, username: res.username, profilePicture: res.profilePicture })
-            })
-
-    }, [currentChat?._id])
-
-    const getConversations = () => {
-        axios.get("http://localhost:8000/conversations/" + user._id)
-            .then(res => setConversations(res.data))
-            .catch(err => console.log(err))
-    }
-
-    const getMessages = () => {
-        axios.get("http://localhost:8000/messages/" + currentChat?._id)
-            .then(res => setMessages(res.data))
-            .catch(err => console.log(err))
-    }
+    }, [currentChat?._id, dispatch])
 
     const handleSend = (e) => {
         e.preventDefault()

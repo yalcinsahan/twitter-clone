@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styles from './app.module.css';
 import Leftbar from './components/leftbar/Leftbar';
 import Rightbar from './components/rightbar/Rightbar';
@@ -10,12 +9,8 @@ import Bottombar from './components/bottombar/Bottombar';
 import Signup from './pages/signup/Signup';
 import Messages from './pages/messages/Messages';
 import Logout from './pages/logout/Logout';
-import { useEffect } from 'react';
-import { changeBottom, changeDisplays, changeLeft, changeRight } from './redux/display-slice';
 
 function App() {
-
-  const { user } = useSelector(state => state.auth)
 
   return (
     <BrowserRouter>
