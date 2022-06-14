@@ -1,12 +1,12 @@
 import styles from './messages.module.css'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
 import { io } from 'socket.io-client'
 import Conversations from '../../components/conversations/Conversations'
 import Message from '../../components/message/Message'
 import { ArrowBack, Send } from '@mui/icons-material'
 import { changeBottom, changeLeft, changeRight } from '../../redux/display-slice'
+import { getConversations, getMessages, postMessage } from '../../services/chat-service'
 
 export default function Messages() {
 
@@ -21,11 +21,6 @@ export default function Messages() {
     const [arrivalMessage, setArrivalMessage] = useState()
     const socket = useRef()
     const scrollRef = useRef();
-    const messagesEndRef = useRef(null)
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-    }
 
     useEffect(() => {
         dispatch(changeLeft(true))
@@ -52,63 +47,43 @@ export default function Messages() {
 
     useEffect(() => {
         socket.current.emit("addUser", user._id);
-        socket.current.on("getUsers", (users) => {
 
-        });
+        getConversations(user._id)
+            .then(res => setConversations(res))
+
     }, [user]);
 
-    useEffect(() => {
-
-        const getConversations = () => {
-            axios.get("http://localhost:8000/conversations/" + user._id)
-                .then(res => setConversations(res.data))
-                .catch(err => console.log(err))
-        }
-
-        getConversations()
-    }, [user._id])
 
     useEffect(() => {
 
-        const getMessages = () => {
-            axios.get("http://localhost:8000/messages/" + currentChat?._id)
-                .then(res => setMessages(res.data))
-                .catch(err => console.log(err))
-        }
+        setMessage("")
 
-        getMessages()
+        getMessages(currentChat?._id)
+            .then(res => setMessages(res))
 
-        if (currentChat?._id) {
-            dispatch(changeBottom(false))
-        }
-        else {
-            dispatch(changeBottom(true))
-        }
+        currentChat?._id ? dispatch(changeBottom(false)) : dispatch(changeBottom(true))
 
     }, [currentChat?._id, dispatch])
 
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
+
     const handleSend = (e) => {
         e.preventDefault()
-
-        scrollToBottom()
 
         if (message) {
             const receiverId = currentChat.members.find((member) => member !== user._id)
 
             socket.current?.emit("sendMessage", { senderId: user._id, receiverId: receiverId, text: message })
 
-            axios.post("http://localhost:8000/messages", { sender: user._id, conversationId: currentChat._id, text: message })
+            postMessage({ sender: user._id, conversationId: currentChat._id, text: message })
                 .then(res => {
-                    setMessages([...messages, res.data])
+                    setMessages([...messages, res])
                     setMessage("")
                 })
-                .catch(err => console.log(err))
         }
     }
-
-    useEffect(() => {
-        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
 
     return (
         <div className={styles["chat"]}>
