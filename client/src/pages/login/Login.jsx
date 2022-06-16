@@ -53,12 +53,14 @@ export default function Login() {
                 onChange={(e) => setUserData({ ...userData, username: e.target.value })} />
 
             <input
-                type="text"
+                type="password"
                 placeholder='password'
                 value={userData.password}
                 onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
 
             <button type='submit' disabled={!userData.username || !userData.password}>Log In</button>
+
+            <div className={styles.router}>Don't have an account? <span onClick={() => navigate("/signup")}>Sign up</span></div>
         </form>
     )
 }

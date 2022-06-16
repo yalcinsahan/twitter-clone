@@ -45,3 +45,15 @@
     width: 100%;
     cursor: pointer;
 }
+
+.router {
+    width: 100%;
+    margin-top: 30px;
+    color: #536471;
+    font-size: 15px;
+}
+
+.router span {
+    color: #1d9bf0;
+    cursor: pointer;
+}
